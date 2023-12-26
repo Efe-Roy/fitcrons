@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name fitcrons.com www.fitcrons.com;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/roy/fitcrons;
+    }
+    location /media/ {
+        root /home/roy/fitcrons;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/roy/fitcrons.sock;
+    }
+}

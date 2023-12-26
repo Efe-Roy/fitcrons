@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-e@gazx&6j&g6#llt+)cwp$r40*p#j$i3&@1n7a_)f3p9k0t2ph
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '24.199.121.34']
+ALLOWED_HOSTS = ['127.0.0.1', '146.190.126.98']
 
 
 # Application definition
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
+    # 'rest_auth',
     "corsheaders",
 ]
 
@@ -95,9 +95,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'fitdb',
-            'USER': 'royuser',
-            'PASSWORD': 'roy12345',
+            'NAME': 'db_fitcrons',
+            'USER': 'fitcrons_user',
+            'PASSWORD': 'Database10.CD',
             'HOST': 'localhost',
             'PORT': '',
         }
@@ -170,4 +170,6 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]

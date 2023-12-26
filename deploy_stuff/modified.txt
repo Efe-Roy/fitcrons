@@ -1,0 +1,51 @@
+server {
+    listen 80;
+    server_name fitcrons.com www.fitcrons.com;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/roy/fitcrons;
+    }
+    location /media/ {
+        root /home/roy/fitcrons;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/roy/fitcrons.sock;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+server {
+    root /var/www/html;
+
+    server_name www.fitcrons.com fitcrons.com;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    listen [::]:443 ssl ipv6only=on;
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/fitcrons.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/fitcrons.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
