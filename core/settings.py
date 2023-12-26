@@ -96,7 +96,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'db_fitcrons',
-            'USER': 'fitcrons_user',
+            'USER': 'user_fitcrons',
             'PASSWORD': 'Database10.CD',
             'HOST': 'localhost',
             'PORT': '',
