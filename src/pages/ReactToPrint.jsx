@@ -3,6 +3,7 @@ import { useReactToPrint } from "react-to-print";
 import Layout from '../components/Layout';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import API from '../redux/api';
 
 const ReactToPrint = () => {
   const {id} = useParams();
@@ -72,14 +73,14 @@ const ReactToPrint = () => {
   useEffect(() => {
     const fetchData = async() => {
       try {
-        const res1 = await axios.get(`http://127.0.0.1:8000/api/fitness/list-create-update/${id}/`);
+        const res1 = await API.get(`/fitness/list-create-update/${id}/`);
         if(res1.data?.length > 0){
           setDataInit(res1.data);
         } else{
             setDataInit([]);
         }
 
-        const res2 = await axios.get(`http://127.0.0.1:8000/api/auth/me/${id}/`);
+        const res2 = await API.get(`/auth/me/${id}/`);
         setMemData(res2.data);
         calculateResults(res2.data);
           

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Modal } from 'antd';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import API from '../../redux/api';
 
 const MemberData = ({memData}) => {
     const [isModalOpen3, setIsModalOpen3] = useState(false);
@@ -30,7 +31,7 @@ const MemberData = ({memData}) => {
     const { register: register3, handleSubmit: handleSubmit3, setValue: setValue3 } = useForm();
     const onSubmit3 = (formData) => {
         // console.log('data:', formData);
-        axios.put(`http://127.0.0.1:8000/api/auth/me/${memData?.id}/`)
+        API.put(`/auth/me/${memData?.id}/`)
         .then(res => {
         //   console.log(res.data)
           handleCancel3()

@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import NutritionFact from '../components/tableComp/NutritionFact';
 import MemberData from '../components/tableComp/MemberData';
+import API from '../redux/api';
 
 const BGImg = '/static/general/Banner.jpg'
 const MemberPage = () => {
@@ -16,7 +17,7 @@ const MemberPage = () => {
     useEffect(() => {
       if (userData) {
         const userD = JSON.parse(userData);
-        axios.get(`http://127.0.0.1:8000/api/auth/me/${userD.user_id}/`)
+        API.get(`/auth/me/${userD.user_id}/`)
         .then(res => {
         //   console.log(res.data)
         setMemID(res.data)

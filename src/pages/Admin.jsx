@@ -9,6 +9,7 @@ import MemberData from '../components/tableComp/MemberData';
 import MyForm from './formBox/lamba';
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from 'react-router-dom';
+import API from '../redux/api';
 const BGImg = '/static/general/Banner.jpg'
 
 const AdminPage = () => {
@@ -17,7 +18,7 @@ const AdminPage = () => {
     const [dataInit, setDataInit] = useState([])
 
     const getMembers = () => {
-        axios.get('http://127.0.0.1:8000/api/auth/memberlist/')
+        API.get('/auth/memberlist/')
         .then(res => {
         //   console.log(res.data)
           setMembers(res.data)
@@ -48,7 +49,7 @@ const AdminPage = () => {
     const onSubmit1 = (formData) => {
         // console.log(formData);
 
-        axios.post(`http://127.0.0.1:8000/api/auth/register-member/`, formData)
+        aAPIpost(`/auth/register-member/`, formData)
         .then(res => {
         //   console.log(res.data)
           alert(res.data.message)
@@ -66,12 +67,12 @@ const AdminPage = () => {
         // console.log('data:', formData);
         const {memberID} = formData;
         try {
-            const res1 = await axios.get(`http://127.0.0.1:8000/api/auth/me/${memberID}/`);
+            const res1 = await API.get(`/auth/me/${memberID}/`);
             setMemData(res1.data);
             handleCancel2();
             calculateResults(res1.data);
 
-            const res2 = await axios.get(`http://127.0.0.1:8000/api/fitness/list-create-update/${memberID}/`);
+            const res2 = await API.get(`/fitness/list-create-update/${memberID}/`);
             // console.log("c", res2.data);
             if(res2.data?.length > 0){
                 // console.log("Has Data")

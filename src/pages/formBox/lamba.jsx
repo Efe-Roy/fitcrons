@@ -4,6 +4,7 @@ import GymActivity from "./gymActivity";
 import axios from "axios";
 import { weekDayDelete } from "../../redux/features/fitnessSlice";
 import { useDispatch } from "react-redux";
+import API from "../../redux/api";
 
 const MyForm = ({dataInit, memb_ID}) => {
   const initialState = [
@@ -53,7 +54,7 @@ const MyForm = ({dataInit, memb_ID}) => {
 
     if(dataInit?.length > 0){
       // console.log("Put Update", data.formData)
-      axios.put(`http://127.0.0.1:8000/api/fitness/list-create-update/${memb_ID}/`, data.formData)
+      API.put(`/fitness/list-create-update/${memb_ID}/`, data.formData)
       .then(res => {
         console.log(res.data)
       })
@@ -62,7 +63,7 @@ const MyForm = ({dataInit, memb_ID}) => {
       });
     } else {
       // console.log("Post Create")
-      axios.post(`http://127.0.0.1:8000/api/fitness/list-create-update/${memb_ID}/`, data)
+      API.post(`/fitness/list-create-update/${memb_ID}/`, data)
       .then(res => {
         console.log(res.data)
       })
