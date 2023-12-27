@@ -17,7 +17,7 @@ const MemberPage = () => {
     useEffect(() => {
       if (userData) {
         const userD = JSON.parse(userData);
-        API.get(`/auth/me/${userD.user_id}/`)
+        API.get(`/api/auth/me/${userD.user_id}/`)
         .then(res => {
         //   console.log(res.data)
         setMemID(res.data)

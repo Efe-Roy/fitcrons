@@ -31,7 +31,7 @@ const MemberData = ({memData}) => {
     const { register: register3, handleSubmit: handleSubmit3, setValue: setValue3 } = useForm();
     const onSubmit3 = (formData) => {
         // console.log('data:', formData);
-        API.put(`/auth/me/${memData?.id}/`)
+        API.put(`/api/auth/me/${memData?.id}/`)
         .then(res => {
         //   console.log(res.data)
           handleCancel3()

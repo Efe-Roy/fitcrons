@@ -18,7 +18,7 @@ const AdminPage = () => {
     const [dataInit, setDataInit] = useState([])
 
     const getMembers = () => {
-        API.get('/auth/memberlist/')
+        API.get('/api/auth/memberlist/')
         .then(res => {
         //   console.log(res.data)
           setMembers(res.data)
@@ -45,15 +45,16 @@ const AdminPage = () => {
     
     
     // Form 1
-    const { register: register1, handleSubmit: handleSubmit1 } = useForm();
+    const { register: register1, handleSubmit: handleSubmit1, reset } = useForm();
     const onSubmit1 = (formData) => {
         // console.log(formData);
 
-        aAPIpost(`/auth/register-member/`, formData)
+        API.post(`/api/auth/register-member/`, formData)
         .then(res => {
         //   console.log(res.data)
           alert(res.data.message)
           handleCancel()
+          reset();
         })
         .catch(err => {
           console.log(err.request.response);
@@ -67,12 +68,12 @@ const AdminPage = () => {
         // console.log('data:', formData);
         const {memberID} = formData;
         try {
-            const res1 = await API.get(`/auth/me/${memberID}/`);
+            const res1 = await API.get(`/api/auth/me/${memberID}/`);
             setMemData(res1.data);
             handleCancel2();
             calculateResults(res1.data);
 
-            const res2 = await API.get(`/fitness/list-create-update/${memberID}/`);
+            const res2 = await API.get(`/api/fitness/list-create-update/${memberID}/`);
             // console.log("c", res2.data);
             if(res2.data?.length > 0){
                 // console.log("Has Data")

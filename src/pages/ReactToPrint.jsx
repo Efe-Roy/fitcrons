@@ -73,14 +73,14 @@ const ReactToPrint = () => {
   useEffect(() => {
     const fetchData = async() => {
       try {
-        const res1 = await API.get(`/fitness/list-create-update/${id}/`);
+        const res1 = await API.get(`/api/fitness/list-create-update/${id}/`);
         if(res1.data?.length > 0){
           setDataInit(res1.data);
         } else{
             setDataInit([]);
         }
 
-        const res2 = await API.get(`/auth/me/${id}/`);
+        const res2 = await API.get(`/api/auth/me/${id}/`);
         setMemData(res2.data);
         calculateResults(res2.data);
           
