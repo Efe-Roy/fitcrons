@@ -54,7 +54,7 @@ const MyForm = ({dataInit, memb_ID}) => {
 
     if(dataInit?.length > 0){
       // console.log("Put Update", data.formData)
-      API.put(`/fitness/list-create-update/${memb_ID}/`, data.formData)
+      API.put(`/api/fitness/list-create-update/${memb_ID}/`, data.formData)
       .then(res => {
         console.log(res.data)
       })
@@ -63,7 +63,7 @@ const MyForm = ({dataInit, memb_ID}) => {
       });
     } else {
       // console.log("Post Create")
-      API.post(`/fitness/list-create-update/${memb_ID}/`, data)
+      API.post(`/api/fitness/list-create-update/${memb_ID}/`, data)
       .then(res => {
         console.log(res.data)
       })
