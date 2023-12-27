@@ -1,0 +1,19 @@
+  location / {
+        try_files $uri $uri/ =404;
+    }
+
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/cd/fitcrons;
+    }
+
+    location /media/ {
+        root /home/cd/fitcrons;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
