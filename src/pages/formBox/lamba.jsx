@@ -50,13 +50,14 @@ const MyForm = ({dataInit, memb_ID}) => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
     if(dataInit?.length > 0){
       // console.log("Put Update", data.formData)
       API.put(`/api/fitness/list-create-update/${memb_ID}/`, data.formData)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
+        alert("Created Successdully")
       })
       .catch(err => {
         console.log(err.request.response);
@@ -65,7 +66,8 @@ const MyForm = ({dataInit, memb_ID}) => {
       // console.log("Post Create")
       API.post(`/api/fitness/list-create-update/${memb_ID}/`, data)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
+        alert("Created Successdully")
       })
       .catch(err => {
         console.log(err.request.response);

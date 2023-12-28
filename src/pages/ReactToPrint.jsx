@@ -92,12 +92,12 @@ const ReactToPrint = () => {
     fetchData();
   }, [])
 
-  console.log({
-    "id": id,
-    "dataInit": dataInit,
-    "memData": memData,
-    "results": results
-  })
+  // console.log({
+  //   "id": id,
+  //   "dataInit": dataInit,
+  //   "memData": memData,
+  //   "results": results
+  // })
   
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
