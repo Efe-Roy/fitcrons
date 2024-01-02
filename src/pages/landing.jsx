@@ -16,17 +16,17 @@ const Landing = () => {
       <section className="text-gray-600 body-font">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-            <img className="object-cover object-center rounded" alt="hero" src={imgHeaderF} />
+            <img className="object-cover object-center rounded-3xl" alt="hero" src={imgHeaderF} />
           </div>
           <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <h4 className='text-base font-semibold mb-4 text-brightRed'>BEST FITNESS IN THE TOWN</h4>
-            <h1 className='text-7xl font-extrabold text-white mb-4'><span className='text-stroke-1'>MAKE</span> YOUR BODY SHAPE</h1>
+            <h4 className='text-base font-semibold mb-4 text-brightRed'>MEJOR FITNESS DE LA CIUDAD</h4>
+            <h1 className='text-7xl font-extrabold text-white mb-4'><span className='text-stroke-1'>HAZ</span> LA FORMA DE TU CUERPO</h1>
 
-            <p className="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
-            <div className="flex justify-center">
+            <p className="mb-8 leading-relaxed">Taza de cobre, horquilla de prueba, reliquia freegan, planta de aire neutra, tacos prensados en frío, bolso de mano con barba. Heirloom echo park mlkshk bolso de mano orillo pollo caliente auténtica trufa de cúrcuma hexágono cambray resistente.</p>
+            {/* <div className="flex justify-center">
               <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
               <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

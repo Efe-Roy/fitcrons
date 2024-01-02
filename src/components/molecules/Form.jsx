@@ -34,12 +34,12 @@ const Form = () => {
     <main className="w-full grid gap-6 pb-10 md:pb-0">
       <div className="w-full flex flex-col gap-2">
         <label htmlFor="height" className="uppercase text-sm text-zinc-200 font-bold">
-          Height
+        Altura
         </label>
         <div className="w-full relative">
           <input
             type="number"
-            placeholder="Enter your height"
+            placeholder="Introduce tu altura"
             className="w-full h-12 pl-4 pr-8 text-zinc-400 outline-none transition-all duration-200 focus:border-amber-500 border border-zinc-400 bg-transparent"
             value={heightValue}
             onChange={(event) => setHeightValue(event.target.value)}
@@ -52,12 +52,12 @@ const Form = () => {
 
       <div className="w-full flex flex-col gap-2">
         <label htmlFor="weight" className="uppercase text-sm text-zinc-200 font-bold">
-          Weight
+        Peso
         </label>
         <div className="w-full relative">
           <input
             type="number"
-            placeholder="Enter your weight"
+            placeholder="Introduce tu peso"
             className="w-full h-12 pl-4 pr-8 text-zinc-400 outline-none transition-all duration-200 focus:border-amber-500 border border-zinc-400 bg-transparent"
             value={weightValue}
             onChange={(event) => setWeightValue(event.target.value)}
@@ -74,14 +74,14 @@ const Form = () => {
           type="button"
           className="px-6 py-3 bg-gradient-to-r from-red-500 to-amber-500 text-zinc-200 text-sm uppercase font-semibold"
         >
-          Calculate Now
+          Calcular ahora
         </button>
       </div>
 
       {bmiValue && (
         <div className="w-full flex flex-col p-4 bg-zinc-700">
           <h2 className="text-zinc-200 text-lg">
-            Your BMI is <span className="font-extrabold">{bmiValue}</span>
+          Su IMC es <span className="font-extrabold">{bmiValue}</span>
           </h2>
           <p className="text-amber-500">
             {bmiMessage}

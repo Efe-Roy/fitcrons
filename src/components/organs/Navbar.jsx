@@ -31,13 +31,13 @@ const Navbar = () => {
         <nav className="relative container mx-auto p-6">
             <div className="flex items-center justify-between">
                 <Link to='/' className="pt-2 text-white text-3xl font-extrabold">
-                    LOGO
+                    FITCRONS
                 </Link>
                 <div className="hidden space-x-6 md:flex">
                     {user?.user_id && 
-                        <Link to="/dashboard" className="hover:text-darkGrayishBlue text-textLight">Dashboard</Link>
+                        <Link to="/dashboard" className="hover:text-darkGrayishBlue text-textLight">Panel</Link>
                     }
-                    <Link to="#" className="hover:text-darkGrayishBlue text-textLight">Community</Link>
+                    <Link to="#" className="hover:text-darkGrayishBlue text-textLight">Comunidad</Link>
                 </div>
                 <div>
 
@@ -45,12 +45,12 @@ const Navbar = () => {
                     <button 
                         onClick={handleLogout}
                         className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
-                    >Logout</button> :
+                    >Cerrar sesión</button> :
 
                 <Link
                     to="/login"
                     className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
-                >Login</Link>
+                >Acceso</Link>
                 }
                 
                 </div>
