@@ -3,7 +3,7 @@ import React from 'react'
 const NutritionFact = ({memData, results}) => {
   return (
     <React.Fragment>
-        <h1 className="sm:text-lg text-sm font-bold title-font text-center text-white mt-10">NUTRITIONAL FACTS</h1>
+        <h1 className="sm:text-lg text-sm font-bold title-font text-center text-white mt-10">DATOS NUTRICIONALES</h1>
         <div className="flex flex-col my-4 md:flex-row">
 
             <div className="flex flex-col px-3 md:w-1/2">
@@ -13,7 +13,7 @@ const NutritionFact = ({memData, results}) => {
                             <table className="min-w-full border text-center text-sm font-light text-white dark:border-neutral-500">
                                 <thead className="border-b font-medium dark:border-neutral-500">
                                     <tr className='border-b'>
-                                        <th scope="col" colSpan={5} className="px-6 py-4">CALORIES</th>
+                                        <th scope="col" colSpan={5} className="px-6 py-4">CALORÍAS</th>
                                     </tr>
                                     <tr>
                                         <th
@@ -24,19 +24,19 @@ const NutritionFact = ({memData, results}) => {
                                         <th
                                             scope="col"
                                             className="border-r px-1 py-4 dark:border-neutral-500">
-                                            CURRENT
+                                            ACTUALES
                                         </th>
                                         <th
                                             scope="col"
                                             className="border-r px-1 py-4 dark:border-neutral-500">
-                                            MAINTENANCE
+                                            MANTENIMIENTO
                                         </th>
                                         <th
                                             scope="col"
                                             className="border-r px-1 py-4 dark:border-neutral-500">
-                                            REDUCTION
+                                            REDUCCIÓN
                                         </th>
-                                        <th scope="col" className="px-1 py-4">INCREASE</th>
+                                        <th scope="col" className="px-1 py-4">AUMENTO</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,30 +73,30 @@ const NutritionFact = ({memData, results}) => {
                             <table className="min-w-full border text-center text-sm font-light text-white dark:border-neutral-500">
                                 <thead className="border-b font-medium dark:border-neutral-500">
                                     <tr className='border-b'>
-                                        <th scope="col" colSpan={5} className="px-6 py-4">RECOMMENDED BASE INTAKE</th>
+                                        <th scope="col" colSpan={5} className="px-6 py-4">INGESTA BASE RECOMENDADA</th>
                                     </tr>
                                     <tr>
                                         <th
                                             scope="col"
                                             className="border-r px-6 py-4 dark:border-neutral-500">
-                                            PROTEIN
+                                            PROTEÍNA
                                         </th>
                                         <th
                                             scope="col"
                                             className="border-r px-6 py-4 dark:border-neutral-500">
-                                            GREASE
+                                            GRASA
                                         </th>
                                         <th
                                             scope="col"
                                             className="border-r px-6 py-4 dark:border-neutral-500">
-                                            CARBS
+                                            CARBOS
                                         </th>
                                         <th
                                             scope="col"
                                             className="border-r px-6 py-4 dark:border-neutral-500">
-                                            FIBRE
+                                            FIBRA
                                         </th>
-                                        <th scope="col" className="px-6 py-4">WATER</th>
+                                        <th scope="col" className="px-6 py-4">AGUA</th>
                                     </tr>
                                 </thead>
                                 <tbody>

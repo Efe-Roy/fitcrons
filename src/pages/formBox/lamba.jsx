@@ -163,7 +163,7 @@ const handleData = (formData) => {
             className="bg-green-600 text-white py-1 px-3 rounded-xl"
             type="submit"
           >
-            {dataInit?.length > 0? "update" : "Submit"}
+            {dataInit?.length > 0? "actualizar" : "Enviar"}
           </button>
         </div>
       </section>

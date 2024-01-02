@@ -448,7 +448,7 @@ const AdminPage = () => {
                 <NutritionFact memData={memData} results={results} />
 
                 {memData.id && <MyForm dataInit={dataInit} memb_ID={memData.id} /> }
-                {memData.id && <Link to={`/toprint/${memData.id}`} className="bg-white px-1 py-2 rounded-lg mb-5" >Generate PDF</Link> }
+                {memData.id && <Link to={`/toprint/${memData.id}`} className="bg-white px-1 py-2 rounded-lg mb-5" >Generar PDF</Link> }
 
                 
 
