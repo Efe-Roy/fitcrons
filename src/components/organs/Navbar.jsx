@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../../redux/features/authSlice';
+import InactivityDetector from '../InactivityDetector ';
 // import logo from '../img/logo.png'
 // import axios from 'axios';
 
@@ -28,6 +29,8 @@ const Navbar = () => {
     
   return (
     <React.Fragment>
+        <InactivityDetector onLogout={handleLogout} />
+
         <nav className="relative container mx-auto p-6">
             <div className="flex items-center justify-between">
                 <Link to='/' className="pt-2 text-white text-3xl font-extrabold">
