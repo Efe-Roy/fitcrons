@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('Auth.urls')),
     path('api/fitness/', include('fitness.urls')),
-    # re_path(r'^.*$', TemplateView.as_view(template_name='base.html')),
+    re_path(r'^.*$', TemplateView.as_view(template_name='base.html')),
 ]
 
 if settings.DEBUG:
