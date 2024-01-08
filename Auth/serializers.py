@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, MemberUser
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.encoding import force_str
@@ -39,13 +39,17 @@ class SignupSerializer(serializers.ModelSerializer):
         return user
 
 
+class MemberUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MemberUser
+        fields = ['id', 'gender', 'age', 'calories', 'height',
+                  'weight', 'factor', 'not_sure', 'objective', 'comment'
+                ]
+        
 class OperatorSignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'name', 'email', 'password', 'role', 
-                  'gender', 'phone', 'age', 'calories', 'height',
-                  'weight', 'factor', 'not_sure', 'objective', 'comment'
-                ]
+        fields = ['id', 'name', 'email', 'password', 'role', 'phone']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -59,23 +63,13 @@ class OperatorSignUpSerializer(serializers.ModelSerializer):
 
         user = User(
             name=self.validated_data['name'],
-            gender=self.validated_data['gender'],
             email=email,
             phone=self.validated_data['phone'],
-            age=self.validated_data['age'],
-            calories=self.validated_data['calories'],
-            height=self.validated_data['height'],
-            weight=self.validated_data['weight'],
-            factor=self.validated_data['factor'],
-            not_sure=self.validated_data['not_sure'],
-            objective=self.validated_data['objective'],
-            comment=self.validated_data['comment'],
             is_active = False,
         )
 
         password = self.validated_data['password']
         user.set_password(password)
-        # user.is_active = False
         user.save()
         return user
 

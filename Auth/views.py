@@ -16,9 +16,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import (
     UserSerializer, SignupSerializer, OperatorSignUpSerializer,
-    ResetPasswordEmailRequestSerializer,SetNewPasswordSerializer
+    ResetPasswordEmailRequestSerializer,SetNewPasswordSerializer, MemberUserSerializer
 )
-from .models import User
+from .models import User, MemberUser
 
 
 class SignupView(generics.GenericAPIView):
@@ -36,11 +36,26 @@ class SignupView(generics.GenericAPIView):
 class CreateOperatorView(generics.GenericAPIView):
     serializer_class = OperatorSignUpSerializer
     def post(self, request, *args, **kwargs):
+        coach_user = self.request.user
         serializer=self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         crPass = request.data["password"]
         crEmail = request.data["email"]
         user = serializer.save()
+
+        MemberUser.objects.create(
+            user=user,
+            coach=coach_user,
+            gender= request.data["gender"],
+            age= request.data["age"],
+            calories= request.data["calories"],
+            height= request.data["height"],
+            weight= request.data["weight"],
+            factor= request.data["factor"],
+            not_sure= request.data["not_sure"],
+            objective= request.data["objective"],
+            comment= request.data["comment"],
+        )
 
         # Generate OTP code
         otp_code = ''.join([str(random.randint(0, 9)) for _ in range(6)])
@@ -125,7 +140,13 @@ class UserDetail(APIView):
     def get(self, request, pk, format=None):
         UserById = self.get_object(pk)
         serializer = UserSerializer(UserById)
-        return Response( serializer.data)
+
+        memUser = MemberUser.objects.get(user=UserById)
+        memSerializerData = MemberUserSerializer(memUser)
+        return Response({
+            "UserData": serializer.data,
+            "MembershipData": memSerializerData.data
+        })
     
     def put(self, request, pk, format=None):
         UserById = self.get_object(pk)
@@ -134,7 +155,6 @@ class UserDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class CustomPageNumberPagination(PageNumberPagination):
     page_size_query_param = 'PageSize'

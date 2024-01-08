@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../../redux/features/authSlice';
 import InactivityDetector from '../InactivityDetector ';
+import Cookies from 'js-cookie';
 // import logo from '../img/logo.png'
 // import axios from 'axios';
 
@@ -13,6 +14,7 @@ const Navbar = () => {
     const handleLogout = () => {
         // console.log("logout")
         dispatch(clearUser());
+        Cookies.remove("userDataFit")
         navigate('/')
         
         

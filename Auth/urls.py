@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('verify-otp/', OTPVerificationView.as_view(), name='verify-otp'),
  
-    # path('rest-auth/', include('rest_auth.urls')),
+    # path('delmem', MemberDelete.as_view()),
 
     path('request-reset-email/', RequestPasswordResetEmail.as_view(), name="request-reset-email"),
     path('password-reset/<uidb64>/<token>/', PasswordTokenCheckAPI.as_view(), name='password-reset-confirm'),

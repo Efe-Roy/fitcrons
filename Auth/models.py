@@ -40,16 +40,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255, blank=True, default='')
-    gender=models.CharField(max_length=25, null=True, blank=True)
     phone=models.CharField(max_length=25, null=True, blank=True)
-    age = models.PositiveIntegerField(null=True, blank=True)
-    calories = models.PositiveIntegerField(null=True, blank=True)
-    height = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    factor = models.DecimalField(max_digits=5, decimal_places=3, null=True, blank=True)
-    not_sure = models.BooleanField(default=False)
-    objective = models.CharField(max_length=50, null=True, blank=True)
-    comment=models.TextField(null=True, blank=True)
+
     role = models.CharField(max_length=20, choices=ROLES_CHOICES, default=MEMBER)
     otp_code = models.CharField(max_length=6, null=True, blank=True)
 
@@ -65,4 +57,22 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
+    
+
+class MemberUser(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='member_user')
+    coach = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='coached_members')
+    gender=models.CharField(max_length=25, null=True, blank=True)
+    age = models.PositiveIntegerField(null=True, blank=True)
+    calories = models.PositiveIntegerField(null=True, blank=True)
+    height = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    factor = models.DecimalField(max_digits=5, decimal_places=3, null=True, blank=True)
+    not_sure = models.BooleanField(default=False)
+    objective = models.CharField(max_length=50, null=True, blank=True)
+    comment=models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f'MemberShip for user {self.user.name}'
     

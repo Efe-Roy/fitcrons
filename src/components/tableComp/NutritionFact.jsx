@@ -47,7 +47,7 @@ const NutritionFact = ({memData, results}) => {
                                         </td>
                                         <td
                                             className="whitespace-nowrap border-r px-1 py-4 dark:border-neutral-500">
-                                            {memData?.calories}
+                                            {memData?.MembershipData?.calories}
                                         </td>
                                         <td
                                             className="whitespace-nowrap border-r px-1 py-4 dark:border-neutral-500">

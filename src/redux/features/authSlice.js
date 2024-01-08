@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import API from "../api";
+import Cookies from "js-cookie";
 
 const initialState = {
   user: null,
@@ -39,6 +40,7 @@ const authSlice = createSlice({
         .addCase(authLogin.fulfilled, (state, action) => {
             state.loading = false;
             state.user = action.payload;
+            Cookies.set("userDataFit", JSON.stringify({ ...action.payload }));
         })
         .addCase(authLogin.rejected, (state, action) => {
             state.loading = false;

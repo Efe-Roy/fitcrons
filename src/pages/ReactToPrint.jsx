@@ -2,7 +2,6 @@ import React,{useEffect, useRef, useState} from 'react';
 import { useReactToPrint } from "react-to-print";
 import Layout from '../components/Layout';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import API from '../redux/api';
 
 const ReactToPrint = () => {
@@ -115,7 +114,7 @@ const ReactToPrint = () => {
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                       <div className="overflow-hidden">
-                          <table className="min-w-full border text-center text-sm text-sm font-light dark:border-neutral-500">
+                          <table className="min-w-full border text-center text-sm font-light dark:border-neutral-500">
                               <thead className="border-b font-medium dark:border-neutral-500">
                                   <tr>
                                   <th

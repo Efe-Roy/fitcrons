@@ -68,6 +68,7 @@ const MyForm = ({dataInit, memb_ID}) => {
       .then(res => {
         // console.log(res.data)
         alert("Created Successdully")
+        window.location.reload();
       })
       .catch(err => {
         console.log(err.request.response);
