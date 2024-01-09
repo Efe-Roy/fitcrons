@@ -72,6 +72,8 @@ class MemberUser(models.Model):
     not_sure = models.BooleanField(default=False)
     objective = models.CharField(max_length=50, null=True, blank=True)
     comment=models.TextField(null=True, blank=True)
+    
+    date_joined = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f'MemberShip for user {self.user.name}'

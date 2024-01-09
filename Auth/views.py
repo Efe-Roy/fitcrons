@@ -122,14 +122,14 @@ class CustomAuthToken(ObtainAuthToken):
 
         return Response(response_data, status=status.HTTP_200_OK)
 
-
 class LogoutView(APIView):
-    def post(self, request, *args, **kwargs):
-        response = Response(status=status.HTTP_200_OK)
-        response.delete_cookie(settings.AUTH_COOKIE)
-
-        return response
-    
+    def post(self, request, format=None):
+        try:
+            request.auth.delete()
+            return Response({ 'success': 'Loggout Out' })
+        except:
+            return Response({ 'error': 'Something went wrong when logging out' })
+        
 class UserDetail(APIView):
     def get_object(self, pk):
         try:
@@ -139,14 +139,9 @@ class UserDetail(APIView):
         
     def get(self, request, pk, format=None):
         UserById = self.get_object(pk)
-        serializer = UserSerializer(UserById)
-
         memUser = MemberUser.objects.get(user=UserById)
         memSerializerData = MemberUserSerializer(memUser)
-        return Response({
-            "UserData": serializer.data,
-            "MembershipData": memSerializerData.data
-        })
+        return Response(memSerializerData.data)
     
     def put(self, request, pk, format=None):
         UserById = self.get_object(pk)
@@ -168,12 +163,21 @@ class UserListView(generics.ListAPIView):
     pagination_class = CustomPageNumberPagination
 
 class MemberListView(generics.ListAPIView):
-    permission_classes = (AllowAny,)
-    serializer_class = UserSerializer
-    queryset = User.objects.filter(role='member')
-    queryset = queryset.order_by('-date_joined')
-    # queryset = User.objects.all().order_by('-date_joined')
+    permission_classes = [IsAuthenticated]
+    serializer_class = MemberUserSerializer
     pagination_class = CustomPageNumberPagination
+
+    # queryset = User.objects.filter(is_superuser=False, role='member')
+    # queryset = queryset.order_by('-date_joined')
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_authenticated:
+            queryset = MemberUser.objects.filter(user__is_superuser=False, user__role='member', coach=user)
+        else:
+            queryset = MemberUser.objects.none()
+
+        return queryset.order_by('-date_joined')
 
 class RequestPasswordResetEmail(generics.GenericAPIView):
     serializer_class = ResetPasswordEmailRequestSerializer

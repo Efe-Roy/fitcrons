@@ -46,7 +46,7 @@ const DetailPage = () => {
   const calculateResults = (data) => {
     // Calculate BMR (Basal Metabolic Rate) using Harris-Benedict equation
     let calculatedBMR = 0;
-    const { weight, height, age, gender, factor } = data?.MembershipData;
+    const { weight, height, age, gender, factor } = data;
 
     if (gender === 'male') {
       calculatedBMR = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
@@ -101,8 +101,8 @@ const DetailPage = () => {
                 <MemberData memData={memData} />
                 <NutritionFact memData={memData} results={results} />
 
-                {memData?.UserData?.id && <MyForm dataInit={dataInit} memb_ID={memData?.UserData?.id} /> }
-                {memData?.UserData?.id && <Link to={`/toprint/${memData?.UserData?.id}`} className="bg-white px-1 py-2 rounded-lg mb-5" >Generar PDF</Link> }
+                {memData?.user?.id && <MyForm dataInit={dataInit} memb_ID={memData?.user?.id} /> }
+                {memData?.user?.id && <Link to={`/toprint/${memData?.user?.id}`} className="bg-white px-1 py-2 rounded-lg mb-5" >Generar PDF</Link> }
 
             </div>
         </section>

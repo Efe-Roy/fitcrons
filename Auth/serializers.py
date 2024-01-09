@@ -40,11 +40,16 @@ class SignupSerializer(serializers.ModelSerializer):
 
 
 class MemberUserSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+
     class Meta:
         model = MemberUser
-        fields = ['id', 'gender', 'age', 'calories', 'height',
+        fields = ['user', 'gender', 'age', 'calories', 'height',
                   'weight', 'factor', 'not_sure', 'objective', 'comment'
                 ]
+        
+    def get_user(self, obj):
+        return UserSerializer(obj.user).data
         
 class OperatorSignUpSerializer(serializers.ModelSerializer):
     class Meta:

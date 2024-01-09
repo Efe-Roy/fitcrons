@@ -373,11 +373,11 @@ const UserList = () => {
                                 ) : (
                                   dataSource?.map((item, i) => (
                                     <tr className="border-b dark:border-neutral-500" key={i}>
-                                      <td className='whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500'>{item?.email}</td>
-                                      <td className='whitespace-nowrap border-r uppercase px-6 py-4 font-medium dark:border-neutral-500'>{item?.name}</td>
-                                      <td className='whitespace-nowrap border-r uppercase px-6 py-4 font-medium dark:border-neutral-500'>{item?.phone}</td>
+                                      <td className='whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500'>{item?.user?.email}</td>
+                                      <td className='whitespace-nowrap border-r uppercase px-6 py-4 font-medium dark:border-neutral-500'>{item?.user?.name}</td>
+                                      <td className='whitespace-nowrap border-r uppercase px-6 py-4 font-medium dark:border-neutral-500'>{item?.user?.phone}</td>
                                       <td className='whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500 text-amber-500'> 
-                                        <Link to={`/detail/${item?.id}`} ><FaEye /></Link>
+                                        <Link to={`/detail/${item?.user?.id}`} ><FaEye /></Link>
                                       </td>
                                     </tr>
                                   ))

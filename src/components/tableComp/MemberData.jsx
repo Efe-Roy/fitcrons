@@ -9,18 +9,18 @@ const MemberData = ({memData}) => {
     const showModal3 = () => {
         setIsModalOpen3(true);
 
-        setValue3("name", memData?.UserData?.name)
-        setValue3("gender", memData?.MembershipData?.gender)
-        setValue3("height", memData?.MembershipData?.height)
-        setValue3("weight", memData?.MembershipData?.weight)
-        setValue3("age", memData?.MembershipData?.age)
-        setValue3("calories", memData?.MembershipData?.calories)
-        setValue3("factor", memData?.MembershipData?.factor)
-        setValue3("not_sure", memData?.MembershipData?.not_sure)
-        setValue3("objective", memData?.MembershipData?.MembershipData?.objective)
-        setValue3("email", memData?.UserData?.email)
-        setValue3("phone", memData?.UserData?.phone)
-        setValue3("comment", memData?.MembershipData?.comment)
+        setValue3("name", memData?.user?.name)
+        setValue3("gender", memData?.gender)
+        setValue3("height", memData?.height)
+        setValue3("weight", memData?.weight)
+        setValue3("age", memData?.age)
+        setValue3("calories", memData?.calories)
+        setValue3("factor", memData?.factor)
+        setValue3("not_sure", memData?.not_sure)
+        setValue3("objective", memData?.objective)
+        setValue3("email", memData?.user?.email)
+        setValue3("phone", memData?.user?.phone)
+        setValue3("comment", memData?.comment)
     };
     const handleOk3 = () => setIsModalOpen3(false);
     const handleCancel3 = () => setIsModalOpen3(false);
@@ -299,28 +299,28 @@ const MemberData = ({memData}) => {
                             <tbody>
                                 <tr className="border-b dark:border-neutral-500">
                                     <td className="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
-                                        {memData?.UserData?.name}
+                                        {memData?.user?.name}
                                     </td>
                                     <td
                                         className="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                        {memData?.MembershipData?.objective === "increase_mass" ? "Aumento de masa muscular" : null }
-                                        {memData?.MembershipData?.objective === "fat_percent_reduction" ? "Reduccion de porcentajes de grasa" : null }
-                                        {memData?.MembershipData?.objective === "maintenance" ? "Mantenimiento" : null }
-                                        {memData?.MembershipData?.objective === "definition" ? "Definición" : null }
+                                        {memData?.objective === "increase_mass" ? "Aumento de masa muscular" : null }
+                                        {memData?.objective === "fat_percent_reduction" ? "Reduccion de porcentajes de grasa" : null }
+                                        {memData?.objective === "maintenance" ? "Mantenimiento" : null }
+                                        {memData?.objective === "definition" ? "Definición" : null }
                                     </td>
                                     <td
                                         className="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                        {memData?.MembershipData?.height}
+                                        {memData?.height}
                                     </td>
                                     <td
                                         className="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                        {memData?.MembershipData?.weight}
+                                        {memData?.weight}
                                     </td>
                                     <td
                                         className="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                        {memData?.MembershipData?.age}
+                                        {memData?.age}
                                     </td>
-                                    <td className="whitespace-nowrap px-6 py-4">{memData?.MembershipData?.factor}</td>
+                                    <td className="whitespace-nowrap px-6 py-4">{memData?.factor}</td>
                                 </tr>
                                 <tr className="border-b dark:border-neutral-500">
                                     <td
@@ -330,11 +330,11 @@ const MemberData = ({memData}) => {
                                     <td
                                         colSpan={4}
                                         className="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                        {memData?.MembershipData?.comment}
+                                        {memData?.comment}
                                     </td>
                                     <td className="whitespace-nowrap px-6 py-4">
                                         <>
-                                            <button disabled={memData?.UserData?.email? false : true} onClick={showModal3} className="mx-1 rounded-lg px-10 font-medium text-white py-2.5 whitespace-nowrap bg-amber-500">Edit Data</button>
+                                            <button disabled={memData?.user?.email? false : true} onClick={showModal3} className="mx-1 rounded-lg px-10 font-medium text-white py-2.5 whitespace-nowrap bg-amber-500">Edit Data</button>
                                             <button className="mx-1 rounded-lg px-10 font-medium text-white py-2.5 whitespace-nowrap bg-red-500">Delete Data</button>
                                         </>
                                     </td>

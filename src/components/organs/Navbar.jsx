@@ -4,30 +4,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../../redux/features/authSlice';
 import InactivityDetector from '../InactivityDetector ';
 import Cookies from 'js-cookie';
-// import logo from '../img/logo.png'
-// import axios from 'axios';
+import API from '../../redux/api';
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // console.log("logout")
-        dispatch(clearUser());
-        Cookies.remove("userDataFit")
-        navigate('/')
-        
-        
-        // axios.post(`http://127.0.0.1:8000/api/auth/logout/`)
-        // .then(res => {
-        //   console.log(res.data)
-        // })
-        // .catch(err => {
-        //   console.log(err.request.response);
-        // });
-    };
+        try {
+            const res = API.post(`/api/auth/logout/`);
+            console.log("xcx", res.data);
+            Cookies.remove("userDataFit");
+            navigate("/");
+        } catch (error) {
+          console.error("Not Authenticated")
+        } 
+      };
 
-    const { user } = useSelector(state => state.auth);
+    const userDataCookie = Cookies.get("userDataFit");
+    const user_id = userDataCookie ? JSON.parse(userDataCookie).user_id : null;
+    const username = userDataCookie ? JSON.parse(userDataCookie).name : null;
+
     
   return (
     <React.Fragment>
@@ -39,23 +36,27 @@ const Navbar = () => {
                     FITCRONS
                 </Link>
                 <div className="hidden space-x-6 md:flex">
-                    {user?.user_id && 
+                    {user_id && 
                         <Link to="/dashboard" className="hover:text-darkGrayishBlue text-textLight">Panel</Link>
                     }
-                    <Link to="#" className="hover:text-darkGrayishBlue text-textLight">Comunidad</Link>
+                    {/* <Link to="#" className="hover:text-darkGrayishBlue text-textLight">Comunidad</Link> */}
                 </div>
                 <div>
 
-                {user?.user_id? 
-                    <button 
-                        onClick={handleLogout}
-                        className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
-                    >Cerrar sesión</button> :
+                {user_id? 
+                    <div className='flex uppercase'>
+                        <span className='mr-5 text-white font-black'>{username}</span>
+                        <button 
+                            onClick={handleLogout}
+                            className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
+                        >Cerrar sesión</button> 
+                    </div>
+                    :
 
-                <Link
-                    to="/login"
-                    className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
-                >Acceso</Link>
+                    <Link
+                        to="/login"
+                        className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
+                    >Acceso</Link>
                 }
                 
                 </div>
