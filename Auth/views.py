@@ -19,7 +19,7 @@ from .serializers import (
     ResetPasswordEmailRequestSerializer,SetNewPasswordSerializer, MemberUserSerializer
 )
 from .models import User, MemberUser
-
+from django.core.exceptions import ObjectDoesNotExist
 
 class SignupView(generics.GenericAPIView):
     serializer_class = SignupSerializer
@@ -162,6 +162,22 @@ class UserListView(generics.ListAPIView):
     queryset = User.objects.all().order_by('-date_joined')
     pagination_class = CustomPageNumberPagination
 
+class ChangePasswordView(APIView):
+    def post(self, request, *args, **kwargs):
+        email = request.data.get('email')
+        new_password = request.data.get('new_password')
+        
+        try:
+            user = User.objects.get(email=email)
+        except ObjectDoesNotExist:
+            return Response({'message': 'User not found with this email.'}, status=status.HTTP_404_NOT_FOUND)
+
+        # Set the new password for the user
+        user.set_password(new_password)
+        user.save()
+
+        return Response({'message': 'Password successfully changed.'}, status=status.HTTP_200_OK)
+    
 class MemberListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = MemberUserSerializer

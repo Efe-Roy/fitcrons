@@ -1,7 +1,7 @@
 from django.urls import path, include
 from .views import (
     CustomAuthToken, UserListView, UserDetail, 
-    OTPVerificationView, MemberListView,
+    OTPVerificationView, MemberListView, ChangePasswordView,
     RequestPasswordResetEmail, PasswordTokenCheckAPI,
     SetNewPasswordAPIView, SignupView, LogoutView, CreateOperatorView
 )
@@ -9,6 +9,7 @@ from .views import (
 urlpatterns = [
     path('login/', CustomAuthToken.as_view(), name ='auth-token'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('change-password/', ChangePasswordView.as_view()),
     path('userlist/', UserListView.as_view()),
     path('memberlist/', MemberListView.as_view()),
     path('register/', SignupView.as_view()),
